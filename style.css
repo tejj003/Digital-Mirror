@@ -1,0 +1,306 @@
+/* style.css */
+
+/* Global body styles */
+body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars if content overflows */
+    font-family: 'Inter', sans-serif; /* Use Inter font */
+    background-color: #000000; /* Black background for red/white/black palette */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+}
+
+/* Custom styles for the p5.js canvas container */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem; /* 20px */
+    padding: 0; /* remove padding so full-screen canvas isn't offset */
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .layout-container {
+        flex-direction: row;
+    }
+}
+
+.gui-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* 16px */
+    min-width: 180px;
+    padding: 1rem; /* 16px */
+    background-color: #b91c1c; /* Tailwind red-700 */
+    border-radius: 0.5rem; /* 8px rounded-lg */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white; /* text color for text inside */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.slider-label {
+    color: white;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 600;
+    margin-bottom: 0.25rem; /* 4px */
+}
+
+.slider-help {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.75rem;
+    margin: 4px 0 10px 0;
+    line-height: 1.1;
+}
+
+.swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid rgba(0,0,0,0.6);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    cursor: pointer;
+    padding: 0;
+}
+
+.swatch[title] {
+    /* ensure gradient previews fit */
+    background-size: 200% 100%;
+}
+
+.controllers-top input[type="color"] {
+    width: 100%;
+    height: 34px;
+    border: none;
+    padding: 4px;
+    margin-bottom: 8px;
+    background: transparent;
+}
+
+.slider-full-width {
+    width: 100%;
+}
+
+.p5-canvas-container {
+    /* full-viewport container that hides overflow so canvas can 'cover' without distortion */
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    overflow: hidden;
+    z-index: 0;
+    /* optional visual treatment kept minimal to avoid clipping */
+}
+
+/* Center the canvas and use min-width/min-height to preserve aspect ratio while covering the viewport */
+.p5-canvas-container canvas {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+/* Styling for range input (sliders) */
+input[type="range"] {
+    -webkit-appearance: none; /* Remove default WebKit styling */
+    appearance: none; /* standardized appearance property for compatibility */
+    width: 100%; /* Full width of its parent container */
+    height: 8px; /* Height of the slider track */
+    background: #000000; /* Black track to match palette */
+    outline: none; /* Remove outline on focus */
+    opacity: 0.7; /* Slightly transparent by default */
+    transition: opacity .2s; /* Smooth transition for opacity change */
+    border-radius: 9999px; /* Fully rounded track (Tailwind's rounded-full) */
+}
+
+/* Change opacity on hover for sliders */
+input[type="range"]:hover {
+    opacity: 1; /* Fully opaque on hover */
+}
+
+/* Styling for the slider thumb (Webkit browsers like Chrome, Safari) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default WebKit thumb styling */
+    appearance: none; /* Standard property for cross-browser compatibility */
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background: #ffffff; /* White thumb for contrast */
+    cursor: pointer; /* Indicate it's clickable */
+    border-radius: 50%; /* Make the thumb perfectly round */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow to the thumb */
+}
+
+/* Styling for the slider thumb (Mozilla browsers like Firefox) */
+input[type="range"]::-moz-range-thumb {
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background: #ffffff; /* White thumb for contrast */
+    cursor: pointer; /* Indicate it's clickable */
+    border-radius: 50%; /* Make the thumb perfectly round */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow to the thumb */
+}
+
+/* Top-right fixed controllers panel */
+.controllers-top {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    background: rgba(127,29,29,0.95); /* slightly transparent darker red */
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    color: white;
+    z-index: 9999;
+    min-width: 220px;
+}
+
+.controllers-top .minimize-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 2px 6px;
+    /* remove float so layout is easier when minimized */
+    float: none;
+    cursor: pointer;
+    transition: transform .12s ease, background-color .12s ease;
+}
+
+.controllers-top.minimized {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    transition: width .12s ease, border-radius .12s ease;
+}
+
+/* When minimized but showing CTA, make it a pill-shaped register button */
+.controllers-top.minimized-cta {
+    width: auto;
+    min-width: 180px;
+    height: 40px;
+    /* make container visually transparent so only the white CTA pill is visible */
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 6px; /* small horizontal padding so button doesn't touch edges */
+    border-radius: 999px;
+    right: 12px;
+    z-index: 10000; /* ensure CTA floats above canvas and other elements */
+    pointer-events: auto; /* ensure clicks register */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: auto; /* allow the CTA to size to its content */
+    height: auto; /* let the button control height */
+}
+
+/* Hide everything inside the controllers container when minimized to CTA,
+   then explicitly show only the minimize button (the CTA pill). */
+.controllers-top.minimized-cta > * {
+    display: none !important;
+}
+.controllers-top.minimized-cta .minimize-btn {
+    display: inline-flex !important;
+}
+
+.controllers-top .register-strip {
+    margin-top: 8px;
+    max-width: 220px;
+}
+
+.controllers-top.minimized .register-strip {
+    display: none;
+}
+
+.controllers-top.minimized .minimize-btn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    /* symmetric padding for even spacing */
+    padding: 6px 14px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+}
+
+.controllers-top.minimized-cta .minimize-btn {
+    background: #ffffff;
+    color: #7f1d1d; /* dark red text for contrast */
+    font-weight: 700;
+    /* ensure CTA text has same symmetric padding */
+    padding: 8px 20px; /* rounder, roomier pill */
+    /* remove strong stroke and heavy shadow that produced a visible line beneath the CTA */
+    border: none;
+    /* softer shadow so there's still separation without a hard line */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    white-space: nowrap; /* keep CTA on single line */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px; /* avoid shrinking too small on small viewports */
+    border-radius: 999px; /* extra round pill */
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.controllers-top .minimize-btn:hover {
+    transform: scale(1.06);
+    background: rgba(255,255,255,0.08);
+}
+
+.controllers-top .slider-label {
+    margin: 0 0 6px 0;
+}
+
+.controllers-top input[type="range"] {
+    background: #111111;
+}
+
+/* Register strip CTA inside the GUI */
+.register-strip {
+    background: rgba(255,255,255,0.06);
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .12s ease, transform .08s ease;
+    user-select: none;
+}
+
+.register-strip:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-2px);
+}
+
+/* Small unobtrusive credit */
+.credit {
+    position: fixed;
+    left: 12px;
+    bottom: 10px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    background: rgba(0,0,0,0.25);
+    padding: 6px 8px;
+    border-radius: 6px;
+    z-index: 9999;
+}
