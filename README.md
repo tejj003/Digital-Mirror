@@ -1,24 +1,50 @@
-# Digital Mirror
+# Digital Miror
 
-Lightweight p5.js generative portrait for exhibition.
+Digital Miror is a live, generative portrait that turns motion, light and the brief gestures
+of a viewer into flowing, squiggly lines — a fragile mirror where the body becomes a
+topography of noise and light. The piece is built with p5.js and runs entirely in the
+browser using a webcam feed; no server component is required.
 
-Files
-- `art.js` — main p5.js sketch that captures webcam and renders squiggly lines.
-- `style.css` — UI and layout styles for the canvas and controllers.
-- `index.html` — entry page that loads p5.js and the sketch.
+## Artist statement
 
-Quick start (local)
-1. Open `index.html` in a modern browser (Chrome/Edge/Firefox).
+Digital Miror explores the space between representation and suggestion. Rather than
+rendering a faithful likeness, the work fragments the sitter into rhythm and texture.
+Lines become memory: they accumulate, jitter and breathe in response to movement,
+ambient light and the viewer's proximity. The resulting image is both intimate and
+anonymous — familiar gestures recomposed into an abstracted presence.
+
+The work invites slow attention. In exhibition, it asks viewers to stand, move, and
+watch their own outline dissolve into a field of lines. The piece values small
+imperfections: noise, latency and the grain of the camera become collaborators,
+not bugs.
+
+## Files
+- `art.js` — main p5.js sketch (webcam capture, drawing, UI controls).
+- `style.css` — visual styling for the canvas, controllers, and CTA.
+- `index.html` — entry point that loads p5.js and the sketch.
+
+## Controls & Usage
+1. Open `index.html` in a modern browser (Chrome, Edge or Firefox).
 2. Allow webcam access when prompted.
+3. Top-right controllers let you adjust:
+    - Line Density — spacing between horizontal lines (lower = denser);
+    - Organic Distortion — noise amplitude applied to lines;
+    - Stroke Weight — thickness of drawn lines;
+    - Color presets and custom stroke/background pickers.
+4. Click the top-right minimize control to collapse the UI to a single CTA pill.
 
-Preparing for GitHub
-1. Initialize a git repo and commit (this project already contains a local commit if you followed setup):
-   - `git init -b main`
-   - `git add .`
-   - `git commit -m "Initial commit: Digital Mirror"`
-2. Create a GitHub repo and follow instructions to push (add remote and push).
+## Hosting / GitHub
+- To publish: create a GitHub repository, add it as `origin`, then `git push -u origin main`.
+- I can add a GitHub Actions workflow to auto-deploy to GitHub Pages if you'd like.
 
-Privacy note
-- This sketch requests webcam access; do not commit any recorded video or sensitive files.
+## Privacy
+- This app uses the webcam stream locally in the browser. No image/video data is
+   uploaded or stored by the app; do not commit saved captures or large media files.
 
-If you want, I can add a GitHub Actions workflow to deploy this as a static site (GitHub Pages).
+## Credits
+- Artist: Tejj
+- Built with p5.js
+
+---
+
+If you'd like, I can also produce a short exhibition README for a hanging label (50–80 words) or add an automated deployment workflow to the repo.
