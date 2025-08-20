@@ -1,13 +1,13 @@
-# Digital Miror
+# Digital Mirror
 
-Digital Miror is a live, generative portrait that turns motion, light and the brief gestures
+Digital Mirror is a live, generative portrait that turns motion, light and the brief gestures
 of a viewer into flowing, squiggly lines — a fragile mirror where the body becomes a
 topography of noise and light. The piece is built with p5.js and runs entirely in the
 browser using a webcam feed; no server component is required.
 
 ## Artist statement
 
-Digital Miror explores the space between representation and suggestion. Rather than
+Digital Mirror explores the space between representation and suggestion. Rather than
 rendering a faithful likeness, the work fragments the sitter into rhythm and texture.
 Lines become memory: they accumulate, jitter and breathe in response to movement,
 ambient light and the viewer's proximity. The resulting image is both intimate and
